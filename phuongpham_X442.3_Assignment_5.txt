@@ -1,0 +1,71 @@
+#Phuong Pham X442.3 Assignment 5
+#Question 1:
+addressbook = { 'Peter':'San Francisco', 'Alan':'San Jose', 'Bob':'Sunnyvale', 'Sam':'Menlo Park', 'Michael':'San Jose'}
+
+nameslist = addressbook.keys()
+nameslist.sort()
+
+print "Question 1:"
+for i in nameslist:
+	print i, addressbook[i]
+
+
+#Question 2:
+a = [7,12,9,14,15,18,12] 
+b = [9,14,8,3,15,17,15] 
+
+big = []
+i = 0
+while i < len(a):
+    big.append(max(a[i],b[i]))
+    i += 1
+
+print "\nProblem 2:", big
+
+#Question 3:
+filename = 'text_file.txt' 
+try: 
+    f = open(filename) 
+
+except IOError, e: 
+    print("Unable to open file for reading %s: %s" % (filename, e))
+
+text = f.readlines()
+f.close()
+
+lettercounter = 0
+linecounter = 0
+for item in text:
+    linecounter += 1
+    lettercounter += len(item)
+    if lettercounter >= 1000:
+        break
+
+print """\nProblem 3:
+Number of lines is %r
+Number of characters is %r""" %(linecounter, lettercounter)
+
+#Question 4:
+filename = 'text_file.txt' 
+try: 
+    f = open(filename) 
+except IOError, e: 
+    print("Unable to open file for reading %s: %s" % (filename, e))
+
+text = f.readlines()
+f.close()
+
+lettercounter = 0
+linecounter = 0
+for item in text:
+    if item.startswith('#'):
+        linecounter += 1
+        lettercounter += len(item)
+        if lettercounter >= 1000:
+            break
+
+
+print """\nProblem 4:
+Number of lines is %r
+Number of characters is %r""" %(linecounter, lettercounter)
+	
