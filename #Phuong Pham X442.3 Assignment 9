@@ -1,0 +1,36 @@
+#Using os.walk, write a script that will print the filenames of zero length files. 
+#It should also print the count of zero length files.
+
+import os
+files_zero_bytes = []
+for root, dirs, files in os.walk('.'):
+    for f in files:
+        file_path = os.path.join(root, f) #Full path to the file
+        size = os.path.getsize(file_path) #pass the full path to getsize()
+        if size == 0:
+            files_zero_bytes.append(f)
+print files_zero_bytes, len(files_zero_bytes)
+
+
+# Write a script that will list and count all of the images in a given HTML web page/file. You can assume that:
+# Each image file is enclosed with the tag <img and ends with >
+# The HTML page/file is syntactically correct
+
+import urllib
+from urllib2 import urlopen
+import re
+
+img_pat = re.compile('<img.*?>',re.I)
+
+def countall(url):
+	try:
+		w =  urllib.urlopen(url)
+		contents =  str(w.read())
+		img_num = len(img_pat.findall(contents))
+		img_list = list(img_pat.findall(contents))
+	except IOError:
+		sys.stderr.write("Couldn't connect to %s " % url)
+		sys.exit(1)
+	return img_list, img_num
+
+print countall('http://phuongpurin.blogspot.com/p/about-me.html')
